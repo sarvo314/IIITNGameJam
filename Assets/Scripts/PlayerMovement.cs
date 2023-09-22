@@ -1,8 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
+    public static event Action OnStartCutscene;
+    public static event Action OnEndCutscene;
+
+    private void OnEnable()
+    {
+        OnStartCutscene += DisableMovement;
+        OnEndCutscene += EnableMovement;
+    }
+
     [SerializeField]
     private float speed = 4f;
     private float jumpForce = 10f;
@@ -13,17 +23,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private CharacterController controller;
     private Vector3 velocity;
+    private bool isMoveable;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         velocity = Vector3.zero;
+        isMoveable = true;
 
     }
 
 
     void FixedUpdate()
     {
+        if (isMoveable) Move();
+    }
 
+    private void Move()
+    {
         //Get the player's input
 
         float x = Input.GetAxis("Horizontal");
@@ -62,6 +78,19 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
         controller.Move(velocity * Time.deltaTime);
+    }
 
+    private void DisableMovement()
+    {
+        isMoveable = false;
+    }
+    private void EnableMovement()
+    {
+        isMoveable = true;
+    }
+    private void OnDisable()
+    {
+        OnEndCutscene -= EnableMovement;
+        OnStartCutscene -= DisableMovement;
     }
 }
