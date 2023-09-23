@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHP : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IDamageable
 {
 
     private float health;
@@ -27,7 +27,7 @@ public class EnemyHP : MonoBehaviour, IDamageable
     {
         health = Mathf.Max(MIN_HEALTH, health - damage);
 #if DEBUG
-        Debug.Log("Enemy health is reduced");
+        Debug.Log("Player health is reduced");
 #endif
     }
 }
