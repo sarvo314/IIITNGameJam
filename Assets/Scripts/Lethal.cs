@@ -6,13 +6,26 @@ public class Lethal : MonoBehaviour
 {
     [SerializeField]
     private float damage = 10f;
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField]
+    GameObject collisionEffect;
+    private void OnTriggerEnter(Collider other)
     {
-        IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
 
+
+        IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+        collisionEffect.transform.position = other.transform.position;
         if (damageable != null)
         {
             damageable.Damage(damage);
         }
+        if (!other.gameObject.CompareTag("Enemy"))
+        {
+            gameObject.transform.parent.gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            collisionEffect.SetActive(true);
+
+        }
+
+
     }
 }

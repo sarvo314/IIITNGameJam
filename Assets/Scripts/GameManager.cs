@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Timeline ended");
 #endif
             floatingCutsceneCompleted?.Invoke();
+            floatingSequenceHasBeenPlayed = true;
 
         }
     }

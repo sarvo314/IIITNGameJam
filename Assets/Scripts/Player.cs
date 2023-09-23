@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDamageable
 {
 
-    private float health;
+    public static float health;
     private float MAX_HEALTH = 100;
     private float MIN_HEALTH = 0;
 
