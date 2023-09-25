@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveDirection.y = movementDirectionY;
         }
-        Debug.Log("Y coord " + moveDirection.y);
+        //Debug.Log("Y coord " + moveDirection.y);
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
         // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied

@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     public static event Action floatingCutsceneCompleted;
     public static event Action startFloatingCutscene;
 
-
-
     [SerializeField]
     PlayableDirector floatingCutscene;
     public static bool floatingSequenceHasBeenPlayed = false;
