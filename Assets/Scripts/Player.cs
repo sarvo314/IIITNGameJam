@@ -14,10 +14,6 @@ public class Player : MonoBehaviour, IDamageable
         health = MAX_HEALTH;
     }
 
-    void Update()
-    {
-
-    }
     public void Heal(float heal)
     {
         health = Mathf.Min(MAX_HEALTH, health + heal);
