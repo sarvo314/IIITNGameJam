@@ -6,8 +6,35 @@ public class IntermediateAnimationScript : MonoBehaviour
 {
     [SerializeField]
     Player player;
-    public void MoveDamage(float damage)
+    [SerializeField]
+    Enemy enemy;
+    [SerializeField]
+    GameObject fireball;
+    [SerializeField]
+    Transform fireballPoint;
+    public void DamageEnemy(float damage)
     {
-        player.MoveDamage(damage);
+        //if (gameObject.CompareTag("Player"))
+        {
+            player.EnemyDamage(damage);
+        }
+
+    }
+    public void HealEnemy(float health)
+    {
+        enemy.Heal(health);
+    }
+    public void DamagePlayer(float damage)
+    {
+        enemy.PlayerDamage(damage);
+        Debug.Log("We damage player");
+
+    }
+    public void EnemyFireBall(float damage)
+    {
+        fireball.transform.position = fireballPoint.position;
+        fireball.transform.LookAt(player.transform.position);
+        fireball.SetActive(true);
+        enemy.PlayerDamage(damage);
     }
 }

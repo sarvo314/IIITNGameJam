@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamageable
     public static event Action playerDeadSequence;
 
     public static float health;
+    public static bool playerIsHitting;
     private float MAX_HEALTH = 100;
     private float MIN_HEALTH = 0;
     [SerializeField]
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour, IDamageable
     private Animator animator;
 
     [SerializeField]
-    private float punchRaycast;
+    private float punchRaycastDistance = 2f;
 
     //damage by punches
     [SerializeField]
@@ -38,29 +39,46 @@ public class Player : MonoBehaviour, IDamageable
     {
         health = MAX_HEALTH;
         playerHealthSlider.value = health;
+        playerIsHitting = false;
+        Moves();
+    }
+
+    private void Moves()
+    {
         combatMove.Add(0, new KeyValuePair<string, float>("Punch", 5f));
         combatMove.Add(1, new KeyValuePair<string, float>("EightPunch", 12.4f));
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            int move = UnityEngine.Random.Range(0, combatMove.Count);
+            while (Enemy.enemyIsHitting) ;
+            playerIsHitting = true;
+            int move = ChooseRandomMove();
             string moveName = combatMove[move].Key;
-            float moveDamage = combatMove[move].Value;
+            playerIsHitting = true;
             animator.SetTrigger(moveName);
-            //this.MoveDamage(moveDamage);
+            playerIsHitting = false;
         }
     }
+
+    private int ChooseRandomMove()
+    {
+        return UnityEngine.Random.Range(0, combatMove.Count);
+    }
+
     //triggered from animation
-    public void MoveDamage(float moveDamage)
+    public void EnemyDamage(float moveDamage)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, punchRaycast))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, punchRaycastDistance))
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
-                hit.collider.gameObject.GetComponent<Enemy>().Damage(moveDamage);
+                Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
+                enemy.Damage(moveDamage);
+                enemy.showHitReaction();
             }
         }
     }
@@ -73,6 +91,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Damage(float damage)
     {
+
         health = Mathf.Max(MIN_HEALTH, health - damage);
         playerHealthSlider.value = health / MAX_HEALTH;
 #if DEBUG

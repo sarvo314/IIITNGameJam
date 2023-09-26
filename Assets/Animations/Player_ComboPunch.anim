@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ComboPunch
+  m_Name: Player_ComboPunch
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -68640,70 +68640,70 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.43333334
-    functionName: MoveDamage
+    functionName: DamageEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 2
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: MoveDamage
+    functionName: DamageEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.5
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: MoveDamage
+    functionName: DamageEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 3
     intParameter: 0
     messageOptions: 0
   - time: 1.2666667
-    functionName: MoveDamage
+    functionName: DamageEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 1
     intParameter: 0
     messageOptions: 0
   - time: 1.7333333
-    functionName: MoveDamage
+    functionName: DamageEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 3
     intParameter: 0
     messageOptions: 0
   - time: 1.8333334
-    functionName: MoveDamage
+    functionName: DamageEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.5
     intParameter: 0
     messageOptions: 0
   - time: 1.9333333
-    functionName: MoveDamage
+    functionName: DamageEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.5
     intParameter: 0
     messageOptions: 0
   - time: 2.1666667
-    functionName: MoveDamage
+    functionName: DamageEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.5
     intParameter: 0
     messageOptions: 0
   - time: 2.4
-    functionName: MoveDamage
+    functionName: DamageEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.5
     intParameter: 0
     messageOptions: 0
   - time: 2.6333334
-    functionName: MoveDamage
+    functionName: DamageEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.5
