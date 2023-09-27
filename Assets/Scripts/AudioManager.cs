@@ -6,9 +6,21 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField]
     private AudioSource[] punches;
+    [SerializeField]
+    private AudioSource getHit;
+    [SerializeField]
+    private AudioSource rage;
+    [SerializeField]
+    private AudioSource fireball;
+    [SerializeField]
+    private AudioSource mainTheme;
+    [SerializeField]
+    private AudioSource fightTheme;
+
     void Start()
     {
-
+        mainTheme.volume = 0.1f;
+        mainTheme.Play();
     }
 
     private int ChooseAPunch()
@@ -21,9 +33,29 @@ public class AudioManager : MonoBehaviour
         punches[ChooseAPunch()].Play();
     }
 
+    public void PlayGetHitSound()
+    {
+        getHit.Play();
+    }
+    public void PlayRageSound()
+    {
+        rage.Play();
+    }
+    public void PlayFireballSound()
+    {
+        fireball.Play();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.floatingSequenceHasBeenPlayed)
+        {
+
+            mainTheme.Stop();
+            Debug.Log("We play fight theme");
+            //fightTheme.Play();
+        }
 
     }
 }

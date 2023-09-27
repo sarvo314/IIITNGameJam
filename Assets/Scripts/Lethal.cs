@@ -11,7 +11,7 @@ public class Lethal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-
+        Debug.Log("takraya");
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         collisionEffect.transform.position = other.transform.position;
         if (damageable != null)

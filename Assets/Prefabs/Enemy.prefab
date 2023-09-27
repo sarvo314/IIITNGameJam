@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2320118466058154114}
+  audioManager: {fileID: 0}
   playerHealthSlider: {fileID: 0}
   punchRaycastDistance: 10
   fireballPoint: {fileID: 693564675970196028}
@@ -1174,6 +1175,7 @@ MonoBehaviour:
   enemy: {fileID: 6073935}
   fireball: {fileID: 0}
   fireballPoint: {fileID: 693564675970196028}
+  audioManager: {fileID: 0}
 --- !u!4 &3087260366356308572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ad5bc92d1aad4ebdb618693cc10d82a,
@@ -1823,3 +1825,4 @@ MonoBehaviour:
   enemy: {fileID: 6073935}
   fireball: {fileID: 0}
   fireballPoint: {fileID: 693564675970196028}
+  audioManager: {fileID: 0}

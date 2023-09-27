@@ -40,12 +40,12 @@ public class Throwable : MonoBehaviour
         Debug.Log("Floating sequence has been played");
 #endif
         GameManager.floatingSequenceHasBeenPlayed = true;
-        if (Player.health > 0)
+        //if (Player.health > 50)
         {
             //foreach (GameObject throwable in throwables)
-            InitializePositions();
+            //InitializePositions();
 
-            StartCoroutine(ThrowSequence());
+            //StartCoroutine(ThrowSequence());
         }
     }
 
@@ -93,16 +93,14 @@ public class Throwable : MonoBehaviour
 
         yield return new WaitForSeconds(delayBetweenThrowing);
     }
-    private void Awake()
+    private void Start()
     {
         //Throw();
         timeElapsed = 0;
         AssignVectors();
         transform.position = enemy.position;
-
-    }
-    private void Start()
-    {
+        InitializePositions();
+        Throw();
 
     }
 
@@ -120,7 +118,7 @@ public class Throwable : MonoBehaviour
     void OnFloatComplete()
     {
         transform.position = enemy.position;
-        InitializePositions();
+
 
     }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IDamageable
@@ -22,6 +23,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField]
     Animator animator;
+    [SerializeField]
+    AudioManager audioManager;
+
 
     [SerializeField]
     private Slider playerHealthSlider;
@@ -42,11 +46,13 @@ public class Enemy : MonoBehaviour, IDamageable
     private float maintainDistance = 1f;
     private bool isRunning;
 
+
+
     private void OnEnable()
     {
         enemyDeadSequence += Die;
     }
-    void Awake()
+    void Start()
     {
         health = MAX_HEALTH;
         playerHealthSlider.value = health;
@@ -82,8 +88,12 @@ public class Enemy : MonoBehaviour, IDamageable
         if (distanceToTarget >= maintainDistance)
         {
             navMeshAgent.SetDestination(target.position);
-            if (!isRunning) animator.SetBool("isRunning", true);
-            isRunning = true;
+            if (!isRunning && GameManager.floatingSequenceHasBeenPlayed)
+            {
+                animator.SetBool("isRunning", true);
+                isRunning = true;
+
+            }
             currentTime = 0f;
         }
         else
@@ -103,12 +113,32 @@ public class Enemy : MonoBehaviour, IDamageable
                 int move = ChooseRandomMove();
                 Debug.Log("We choost Move" + move);
                 string moveName = combatMove[move].Key;
+                if (moveName == "EnemyBattleCry")
+                {
+                    audioManager.PlayRageSound();
+                }
+                else if (moveName == "Enemy_Fireball")
+                {
+                    Invoke("PlayFireBallSound", 2f);
+                }
+                else
+                {
+                    Invoke("PlayPunchSound", 1f);
+                }
                 animator.SetTrigger(moveName);
                 enemyIsHitting = false;
                 currentTime = 0f;
             }
 
         }
+    }
+    private void PlayFireBallSound()
+    {
+        audioManager.PlayFireballSound();
+    }
+    private void PlayPunchSound()
+    {
+        audioManager.PlayPunchSound();
     }
     public void showHitReaction()
     {
@@ -136,6 +166,8 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
+                audioManager.PlayGetHitSound();
+
                 hit.collider.gameObject.GetComponent<Player>().Damage(moveDamage);
             }
         }
@@ -164,6 +196,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Die()
     {
         animator.SetTrigger("Dead");
+        SceneManager.LoadScene(1);
     }
 
     private void OnDisable()

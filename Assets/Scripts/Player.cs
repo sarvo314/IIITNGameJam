@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
@@ -22,7 +23,9 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField]
     private float punchRaycastDistance = 2f;
 
-    [SerializeField] private AudioSource[] punches;
+    [SerializeField]
+    AudioManager audioManager;
+
 
     //damage by punches
     [SerializeField]
@@ -48,15 +51,15 @@ public class Player : MonoBehaviour, IDamageable
     private void Moves()
     {
         combatMove.Add(0, new KeyValuePair<string, float>("Punch", 5f));
-        combatMove.Add(1, new KeyValuePair<string, float>("EightPunch", 12.4f));
+        //combatMove.Add(1, new KeyValuePair<string, float>("EightPunch", 12.4f));
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-
             while (Enemy.enemyIsHitting) ;
+            //audioManager.PlayPunchSound();
             playerIsHitting = true;
             int move = ChooseRandomMove();
             string moveName = combatMove[move].Key;
@@ -81,6 +84,8 @@ public class Player : MonoBehaviour, IDamageable
             {
                 Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
                 enemy.Damage(moveDamage);
+                audioManager.PlayPunchSound();
+                audioManager.PlayGetHitSound();
                 enemy.showHitReaction();
             }
         }
@@ -104,6 +109,7 @@ public class Player : MonoBehaviour, IDamageable
     private void Die()
     {
         animator.SetTrigger("Dead");
+        SceneManager.LoadScene(1);
     }
     private void OnDisable()
     {

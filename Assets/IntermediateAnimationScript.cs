@@ -12,8 +12,14 @@ public class IntermediateAnimationScript : MonoBehaviour
     GameObject fireball;
     [SerializeField]
     Transform fireballPoint;
+
+    [SerializeField]
+    AudioManager audioManager;
+
     public void DamageEnemy(float damage)
     {
+
+
         //if (gameObject.CompareTag("Player"))
         {
             player.EnemyDamage(damage);
@@ -26,6 +32,7 @@ public class IntermediateAnimationScript : MonoBehaviour
     }
     public void DamagePlayer(float damage)
     {
+
         enemy.PlayerDamage(damage);
         Debug.Log("We damage player");
 
