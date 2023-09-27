@@ -22,6 +22,8 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField]
     private float punchRaycastDistance = 2f;
 
+    [SerializeField] private AudioSource[] punches;
+
     //damage by punches
     [SerializeField]
     private float damage = 5f;
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
+
             while (Enemy.enemyIsHitting) ;
             playerIsHitting = true;
             int move = ChooseRandomMove();

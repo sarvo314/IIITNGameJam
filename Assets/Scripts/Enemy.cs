@@ -29,9 +29,10 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField]
     private float punchRaycastDistance = 2f;
 
-    private float currentTime = 2f;
-    private float maxTime = 2f;
-
+    private float currentTime = 0;
+    private float maxTime = 3f;
+    [SerializeField]
+    private Transform fireballPoint;
     //AI
     [SerializeField]
     private Transform target;
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private float distanceToTarget = Mathf.Infinity;
     [SerializeField]
     private float maintainDistance = 1f;
+    private bool isRunning;
 
     private void OnEnable()
     {
@@ -51,6 +53,8 @@ public class Enemy : MonoBehaviour, IDamageable
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.stoppingDistance = maintainDistance;
         enemyIsHitting = false;
+        isRunning = false;
+        currentTime = maxTime;
         Moves();
         HitReaction();
     }
@@ -60,7 +64,10 @@ public class Enemy : MonoBehaviour, IDamageable
         combatMove.Add(0, new KeyValuePair<string, float>("Enemy_Fireball", 5f));
         combatMove.Add(1, new KeyValuePair<string, float>("Enemy_Kicking", 12.4f));
         combatMove.Add(2, new KeyValuePair<string, float>("EnemyBattleCry", 12.4f));
-
+        combatMove.Add(3, new KeyValuePair<string, float>("Enemy_Punch_L", 12.4f));
+        combatMove.Add(4, new KeyValuePair<string, float>("Enemy_Punch_R", 12.4f));
+        combatMove.Add(5, new KeyValuePair<string, float>("Enemy_Hook_L", 12.4f));
+        combatMove.Add(6, new KeyValuePair<string, float>("Enemy_Hook_R", 12.4f));
     }
     private void HitReaction()
     {
@@ -72,10 +79,11 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-        navMeshAgent.SetDestination(target.position);
         if (distanceToTarget >= maintainDistance)
         {
-            animator.SetBool("isRunning", true);
+            navMeshAgent.SetDestination(target.position);
+            if (!isRunning) animator.SetBool("isRunning", true);
+            isRunning = true;
             currentTime = 0f;
         }
         else
@@ -83,7 +91,7 @@ public class Enemy : MonoBehaviour, IDamageable
             animator.SetBool("isRunning", false);
             //while (Player.playerIsHitting) ;
             //if(play)
-
+            isRunning = false;
             if (currentTime < maxTime)
             {
                 currentTime += Time.deltaTime;
@@ -121,7 +129,10 @@ public class Enemy : MonoBehaviour, IDamageable
     public void PlayerDamage(float moveDamage)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, punchRaycastDistance))
+        //Debug.Log("We hit something");
+        //Debug.DrawRay(transform.position, transform.forward);
+        float offset = fireballPoint.position.y;
+        if (Physics.Raycast(transform.position + new Vector3(0, offset, 0), transform.forward, out hit, punchRaycastDistance))
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
