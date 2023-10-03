@@ -88,17 +88,23 @@ public class Enemy : MonoBehaviour, IDamageable
         if (distanceToTarget >= maintainDistance)
         {
             navMeshAgent.SetDestination(target.position);
-            if (!isRunning && GameManager.floatingSequenceHasBeenPlayed)
+            //if (!isRunning)
             {
-                animator.SetBool("isRunning", true);
-                isRunning = true;
+                Debug.Log("Enemy wasn't runnign");
+                if (GameManager.floatingSequenceHasBeenPlayed)
+                {
+                    Debug.Log("Enemy is runnign");
+                    animator.SetBool("isRunning", true);
+                    isRunning = true;
 
+                }
             }
             currentTime = 0f;
         }
         else
         {
             animator.SetBool("isRunning", false);
+            Debug.Log("We stopped running anim");
             //while (Player.playerIsHitting) ;
             //if(play)
             isRunning = false;

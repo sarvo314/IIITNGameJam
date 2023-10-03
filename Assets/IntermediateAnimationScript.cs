@@ -18,8 +18,6 @@ public class IntermediateAnimationScript : MonoBehaviour
 
     public void DamageEnemy(float damage)
     {
-
-
         //if (gameObject.CompareTag("Player"))
         {
             player.EnemyDamage(damage);

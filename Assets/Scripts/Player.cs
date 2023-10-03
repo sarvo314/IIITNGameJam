@@ -63,7 +63,6 @@ public class Player : MonoBehaviour, IDamageable
             playerIsHitting = true;
             int move = ChooseRandomMove();
             string moveName = combatMove[move].Key;
-            playerIsHitting = true;
             animator.SetTrigger(moveName);
             playerIsHitting = false;
         }

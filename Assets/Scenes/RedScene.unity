@@ -14942,7 +14942,7 @@ PrefabInstance:
     - target: {fileID: 3265848117485116029, guid: 31b6ceb89d0874002b2b26be987f3dcf,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3281444913501527746, guid: 31b6ceb89d0874002b2b26be987f3dcf,
         type: 3}
@@ -14964,6 +14964,11 @@ PrefabInstance:
       propertyPath: fireball
       value: 
       objectReference: {fileID: 1150068618}
+    - target: {fileID: 8646228379427656760, guid: 31b6ceb89d0874002b2b26be987f3dcf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.245
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31b6ceb89d0874002b2b26be987f3dcf, type: 3}
 --- !u!1 &2124281138 stripped
