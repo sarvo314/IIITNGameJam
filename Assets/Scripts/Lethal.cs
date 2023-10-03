@@ -21,7 +21,7 @@ public class Lethal : MonoBehaviour
         if (!other.gameObject.CompareTag("Enemy"))
         {
             gameObject.transform.parent.gameObject.SetActive(false);
-            //gameObject.SetActive(false);
+
             collisionEffect.SetActive(true);
 
         }

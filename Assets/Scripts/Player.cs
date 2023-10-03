@@ -101,6 +101,10 @@ public class Player : MonoBehaviour, IDamageable
 
         health = Mathf.Max(MIN_HEALTH, health - damage);
         playerHealthSlider.value = health / MAX_HEALTH;
+        if (health == 0)
+        {
+            playerDeadSequence?.Invoke();
+        }
 #if DEBUG
         Debug.Log("Player health is reduced");
 #endif

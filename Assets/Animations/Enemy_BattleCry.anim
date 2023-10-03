@@ -83189,6 +83189,6 @@ AnimationClip:
     functionName: HealEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 5
+    floatParameter: 15
     intParameter: 0
     messageOptions: 0
