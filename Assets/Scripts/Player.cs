@@ -108,7 +108,7 @@ public class Player : MonoBehaviour, IDamageable
     private void Die()
     {
         animator.SetTrigger("Dead");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
     private void OnDisable()
     {
