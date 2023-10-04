@@ -3415,6 +3415,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 441077314}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &444657236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1341978440587708504, guid: 82ce40d2d0c144f46808ac1fcbb6f704,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404594430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &458369006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10188,12 +10194,33 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1404594430}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 444657236}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a1f4635a65f74a7cbb845548e27aa79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1356875648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444657236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbbfb77a29db4e88bc14f9d46ac505a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMove: 1
+  animator: {fileID: 0}
+  walkingSpeed: 7.5
+  runningSpeed: 9
+  jumpSpeed: 8
+  gravity: 20
+  playerCamera: {fileID: 1748219692}
+  lookSpeed: 2
+  lookXLimit: 45
 --- !u!1001 &1387577029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10324,9 +10351,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1341978440587708498, guid: 82ce40d2d0c144f46808ac1fcbb6f704,
         type: 3}
+      propertyPath: gameInput
+      value: 
+      objectReference: {fileID: 1356875648}
+    - target: {fileID: 1341978440587708498, guid: 82ce40d2d0c144f46808ac1fcbb6f704,
+        type: 3}
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 1092487524}
+    - target: {fileID: 1341978440587708498, guid: 82ce40d2d0c144f46808ac1fcbb6f704,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1748219692}
     - target: {fileID: 1341978440587708498, guid: 82ce40d2d0c144f46808ac1fcbb6f704,
         type: 3}
       propertyPath: playerHealthSlider
@@ -10392,7 +10429,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1341978440587708503, guid: 82ce40d2d0c144f46808ac1fcbb6f704, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 82ce40d2d0c144f46808ac1fcbb6f704, type: 3}
 --- !u!1001 &1405311130
 PrefabInstance:
@@ -12651,6 +12689,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 455f6bc83701b37449a1b01407e740e5,
     type: 3}
   m_PrefabInstance: {fileID: 1745856674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1748219692 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1341978440275299232, guid: 82ce40d2d0c144f46808ac1fcbb6f704,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404594430}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1765111744 stripped
 GameObject:
