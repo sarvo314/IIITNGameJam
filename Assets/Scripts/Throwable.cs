@@ -8,10 +8,10 @@ public class Throwable : MonoBehaviour
     [SerializeField]
     private Transform target;
     [SerializeField]
-    private float durationToMove = 2f;
+    //private float durationToMove = 0.5f;
     private float timeElapsed = 0f;
     [SerializeField]
-    private float delayBetweenThrowing = 5f;
+    private float delayBetweenThrowing = 1f;
 
     private float offset = 7f;
     float angle = 0;
@@ -22,6 +22,7 @@ public class Throwable : MonoBehaviour
     Vector3[] cutscenePositions = new Vector3[20];
     [SerializeField]
     Transform enemy;
+    private float rockSpeedMultiplier = 2f;
 
     private void OnEnable()
     {
@@ -64,7 +65,8 @@ public class Throwable : MonoBehaviour
         Vector3 initialPos = throwable.position;
         Vector3 targetPos = target.position;
         float distanceFromTarget = Vector3.Distance(initialPos, targetPos);
-        float t = timeElapsed / durationToMove;
+        //float t = timeElapsed / durationToMove;
+        float t = 0;
 #if DEBUG
         Debug.Log("Sequence Started");
 #endif
@@ -86,7 +88,7 @@ public class Throwable : MonoBehaviour
                 t = 1;
                 timeElapsed = 0;
             }
-            t += Time.deltaTime;
+            t += Time.deltaTime * rockSpeedMultiplier;
             //yield return new WaitForFixedUpdate();
             yield return null;
         }
