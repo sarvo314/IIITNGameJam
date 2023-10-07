@@ -10,6 +10,7 @@ public class GameInput : MonoBehaviour
 {
     public event EventHandler OnJumpAction;
     public event EventHandler OnPunchAction;
+    public event EventHandler OnKickAction;
     [HideInInspector]
     public bool canMove = true;
 
@@ -22,12 +23,19 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Enable();
         playerInputActions.Player.Jump.performed += Jump_performed;
         playerInputActions.Player.Punch.performed += Punch_performed;
+        playerInputActions.Player.Kick.performed += Kick_performed;
+    }
+
+    private void Kick_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnKickAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void Punch_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnPunchAction?.Invoke(this, EventArgs.Empty);
     }
+
 
     private void Jump_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {

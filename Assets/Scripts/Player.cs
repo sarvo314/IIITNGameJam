@@ -38,6 +38,10 @@ public class Player : MonoBehaviour, IDamageable
     public float runningSpeed = 9f;
 
     private const string IS_RUNNING = "isRunning";
+    private const string R_PUNCH = "R_Punch";
+    private const string L_PUNCH = "L_Punch";
+    private const string L_KICK = "L_Kick";
+    private const string R_KICK = "R_Kick";
 
     [SerializeField]
     private float punchRaycastDistance = 2f;
@@ -61,9 +65,9 @@ public class Player : MonoBehaviour, IDamageable
 
     Vector3 moveDirection = Vector3.zero;
 
-    //string[] combatMove = { "Punch", "PunchToElbow" }
-    Dictionary<int, KeyValuePair<string, float>>
-          combatMove = new Dictionary<int, KeyValuePair<string, float>>();
+    Dictionary<int, KeyValuePair<string, float>> punches = new Dictionary<int, KeyValuePair<string, float>>();
+    Dictionary<int, KeyValuePair<string, float>> kicks = new Dictionary<int, KeyValuePair<string, float>>();
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -72,7 +76,20 @@ public class Player : MonoBehaviour, IDamageable
         playerIsHitting = false;
         gameInput.OnJumpAction += GameInput_OnJumpAction;
         gameInput.OnPunchAction += GameInput_OnPunchAction;
-        Moves();
+        gameInput.OnKickAction += GameInput_OnKickAction;
+        AddPunches();
+        AddKicks();
+    }
+
+    private void GameInput_OnKickAction(object sender, EventArgs e)
+    {
+        while (Enemy.enemyIsHitting) ;
+        //audioManager.PlayPunchSound();
+        playerIsHitting = true;
+        int move = ChooseAKick();
+        string moveName = kicks[move].Key;
+        animator.SetTrigger(moveName);
+        playerIsHitting = false;
     }
 
     private void GameInput_OnPunchAction(object sender, EventArgs e)
@@ -80,8 +97,8 @@ public class Player : MonoBehaviour, IDamageable
         while (Enemy.enemyIsHitting) ;
         //audioManager.PlayPunchSound();
         playerIsHitting = true;
-        int move = ChooseRandomMove();
-        string moveName = combatMove[move].Key;
+        int move = ChooseAPunch();
+        string moveName = punches[move].Key;
         animator.SetTrigger(moveName);
         playerIsHitting = false;
     }
@@ -93,9 +110,16 @@ public class Player : MonoBehaviour, IDamageable
         animator.SetTrigger("Jump");
     }
 
-    private void Moves()
+    private void AddPunches()
     {
-        combatMove.Add(0, new KeyValuePair<string, float>("Punch", 5f));
+        punches.Add(0, new KeyValuePair<string, float>(R_PUNCH, 5f));
+        punches.Add(1, new KeyValuePair<string, float>(L_PUNCH, 5f));
+
+    }
+    private void AddKicks()
+    {
+        kicks.Add(0, new KeyValuePair<string, float>(R_KICK, 5f));
+        kicks.Add(1, new KeyValuePair<string, float>(L_KICK, 5f));
     }
 
     private void Update()
@@ -155,11 +179,14 @@ public class Player : MonoBehaviour, IDamageable
         animator.SetBool(IS_RUNNING, state);
     }
 
-    private int ChooseRandomMove()
+    private int ChooseAPunch()
     {
-        return UnityEngine.Random.Range(0, combatMove.Count);
+        return UnityEngine.Random.Range(0, punches.Count);
     }
-
+    private int ChooseAKick()
+    {
+        return UnityEngine.Random.Range(0, kicks.Count);
+    }
     //triggered from animation
     public void EnemyDamage(float moveDamage)
     {

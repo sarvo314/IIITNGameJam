@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private bool isRunning;
 
 
+    private const string SHAKE = "Shake";
 
     private void OnEnable()
     {
@@ -85,7 +86,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-        if (distanceToTarget >= maintainDistance)
+        transform.LookAt(target);
+        if (distanceToTarget > maintainDistance)
         {
             navMeshAgent.SetDestination(target.position);
             //if (!isRunning)
@@ -114,6 +116,7 @@ public class Enemy : MonoBehaviour, IDamageable
             }
             else
             {
+
                 if (Player.playerIsHitting) return;
                 enemyIsHitting = true;
                 int move = ChooseRandomMove();
@@ -173,8 +176,9 @@ public class Enemy : MonoBehaviour, IDamageable
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 audioManager.PlayGetHitSound();
-
+                audioManager.PlayPunchSound();
                 hit.collider.gameObject.GetComponent<Player>().Damage(moveDamage);
+                Camera.main.GetComponent<Animator>().SetTrigger(SHAKE);
             }
         }
     }
