@@ -281,5 +281,9 @@ public class Player : MonoBehaviour, IDamageable
     private void OnDisable()
     {
         playerDeadSequence -= Die;
+        gameInput.OnJumpAction -= GameInput_OnJumpAction;
+        gameInput.OnPunchAction -= GameInput_OnPunchAction;
+        gameInput.OnKickAction -= GameInput_OnKickAction;
     }
+
 }

@@ -3558,6 +3558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1431123686}
   - component: {fileID: 1431123685}
+  - component: {fileID: 1431123687}
   m_Layer: 0
   m_Name: HeroWinTimelines
   m_TagString: Untagged
@@ -3599,6 +3600,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1431123687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431123684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db0c7ee63dfc4f0b88ef1b60eacb74e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1440947689
 PrefabInstance:
   m_ObjectHideFlags: 0

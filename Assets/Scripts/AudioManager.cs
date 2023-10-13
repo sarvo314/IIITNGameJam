@@ -16,6 +16,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource mainTheme;
     [SerializeField]
     private AudioSource fightTheme;
+    [SerializeField]
+    private AudioSource iWillDestroyThisWorld;
 
     void Start()
     {
@@ -45,7 +47,10 @@ public class AudioManager : MonoBehaviour
     {
         fireball.Play();
     }
-
+    public void IWillDestroyThisWorld()
+    {
+        iWillDestroyThisWorld.Play();
+    }
     // Update is called once per frame
     void Update()
     {

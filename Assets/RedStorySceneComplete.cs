@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
-public class GreenSceneComplete : MonoBehaviour
+public class RedStorySceneComplete : MonoBehaviour
 {
     PlayableDirector playableDirector;
     //[SerializeField]
-    private const string RED_INITIAL_STORYLINE = "Red_initial_storyLine";
+    private const string RED_SCENE = "RedScene";
     void Start()
     {
         playableDirector = GetComponent<PlayableDirector>();
@@ -19,7 +19,7 @@ public class GreenSceneComplete : MonoBehaviour
     {
         if (playableDirector.state == PlayState.Paused)
         {
-            SceneManager.LoadScene(RED_INITIAL_STORYLINE);
+            SceneManager.LoadScene(RED_SCENE);
         }
     }
 }

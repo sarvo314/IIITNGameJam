@@ -27,8 +27,10 @@ public class GameManager : MonoBehaviour
     GameObject endSequenceGameObject;
     [SerializeField]
     float endSequenceHealthReduce;
+    [SerializeField]
+    private AudioManager audioManager;
     //start at this health of enemy, a fraction
-    public static float EndSequenceStartHealth = 2f;
+    public static float EndSequenceStartHealth = 0.5f;
 
 
 
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
     void EndSequenceStart()
     {
         player.Heal(10f);
+        audioManager.IWillDestroyThisWorld();
         endSequenceGameObject.SetActive(true);
         Player.jumpSpeed = 20;
         Player.gravity = 20;
