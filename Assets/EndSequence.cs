@@ -11,6 +11,9 @@ public class EndSequence : MonoBehaviour
     [SerializeField]
     GameInput gameInput;
 
+    [SerializeField]
+    AudioManager audioManager;
+
     //[SerializeField]
     //GameObject finalCutSceneTimeline;
 
@@ -31,6 +34,7 @@ public class EndSequence : MonoBehaviour
         {
             pressEtoKill.SetActive(true);
             GameManager.canFinalKill = true;
+            audioManager.NowPleaseStop();
         }
     }
 
