@@ -15,6 +15,8 @@ public class GameInput : MonoBehaviour
     public bool canMove = true;
 
     PlayerInputActions playerInputActions;
+
+    public event EventHandler FinalCutScenePlay;
     //[SerializeField]
     //private Animator animator;
     private void Awake()
@@ -24,6 +26,16 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Jump.performed += Jump_performed;
         playerInputActions.Player.Punch.performed += Punch_performed;
         playerInputActions.Player.Kick.performed += Kick_performed;
+        playerInputActions.Player.Interact.performed += Interact_performed;
+    }
+
+    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (GameManager.canFinalKill)
+        {
+            FinalCutScenePlay?.Invoke(this, EventArgs.Empty);
+
+        }
     }
 
     private void Kick_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

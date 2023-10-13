@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     PlayableDirector floatingCutscene;
     public static bool floatingSequenceHasBeenPlayed = false;
 
+    public static bool canFinalKill = false;
+
     [SerializeField]
     Enemy enemy;
     [SerializeField]
@@ -23,8 +25,11 @@ public class GameManager : MonoBehaviour
     Transform endSequenceEnemyPosition;
     [SerializeField]
     GameObject endSequenceGameObject;
+    [SerializeField]
+    float endSequenceHealthReduce;
+    //start at this health of enemy, a fraction
+    public static float EndSequenceStartHealth = 2f;
 
-    public static float EndSequenceStartHealth = 0.5f;
 
 
     [SerializeField]
@@ -57,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     void EndSequenceStart()
     {
+        player.Heal(10f);
         endSequenceGameObject.SetActive(true);
         Player.jumpSpeed = 20;
         Player.gravity = 20;
@@ -64,8 +70,24 @@ public class GameManager : MonoBehaviour
         enemy.GetComponent<NavMeshAgent>().enabled = false;
         Destroy(enemy.GetComponent<Rigidbody>());
         enemy.transform.position = endSequenceEnemyPosition.position;
+        StartCoroutine(ReducePlayerHealth());
 
     }
+    IEnumerator ReducePlayerHealth()
+    {
+        while (Player.health > 0)
+        {
+
+            player.Damage(endSequenceHealthReduce);
+            yield return new WaitForSeconds(3f);
+        }
+
+        yield return null;
+    }
+
+
+
+
     private void OnDisable()
     {
         Enemy.endSequence -= EndSequenceStart;

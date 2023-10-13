@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RedScene.unity
     guid: a3bd36d193adee248973c15a12091519
+  - enabled: 1
+    path: Assets/Scenes/FinalCutScene.unity
+    guid: b6d4b56b8ce624a12bf4c4d18e372ee9
+  - enabled: 1
+    path: Assets/Scenes/PlayerWinScene.unity
+    guid: 9b9c7f05a5b44ba4d81f417ad80e540b
+  - enabled: 1
+    path: Assets/Scenes/EnemyWinScene.unity
+    guid: b200364999bc40645b23995350b72775
   m_configObjects: {}

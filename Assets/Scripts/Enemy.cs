@@ -218,7 +218,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Die()
     {
         animator.SetTrigger("Dead");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("PlayerWinScene");
     }
 
     private void OnDisable()

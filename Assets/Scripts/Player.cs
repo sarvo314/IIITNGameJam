@@ -276,7 +276,7 @@ public class Player : MonoBehaviour, IDamageable
     private void Die()
     {
         animator.SetTrigger("Dead");
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("EnemyWinScene");
     }
     private void OnDisable()
     {
