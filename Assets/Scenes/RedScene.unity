@@ -8672,7 +8672,7 @@ MonoBehaviour:
   fireball: {fileID: 1092487530}
   mainTheme: {fileID: 1092487532}
   fightTheme: {fileID: 1092487531}
-  iWillDestroyThisWorld: {fileID: 0}
+  iWillDestroyThisWorld: {fileID: 1092487533}
 --- !u!82 &1092487525
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14691,7 +14691,7 @@ MonoBehaviour:
   endSequenceEnemyPosition: {fileID: 1796724329}
   endSequenceGameObject: {fileID: 1598564}
   endSequenceHealthReduce: 0.5
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 1092487524}
   fightTheme: {fileID: 1715902002}
 --- !u!4 &1715902001
 Transform:
