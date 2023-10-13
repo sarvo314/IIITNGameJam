@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IDamageable
 {
 
     public static event Action enemyDeadSequence;
+    public static event Action endSequence;
 
     private float health;
     private float MAX_HEALTH = 100;
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour, IDamageable
     Animator animator;
     [SerializeField]
     AudioManager audioManager;
+
 
 
     [SerializeField]
@@ -191,7 +193,17 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Damage(float damage)
     {
         health = Mathf.Max(MIN_HEALTH, health - damage);
-        playerHealthSlider.value = health / MAX_HEALTH;
+
+        float normalizedHealth = health / MAX_HEALTH;
+
+        playerHealthSlider.value = normalizedHealth;
+
+        if (normalizedHealth < GameManager.EndSequenceStartHealth)
+        {
+            endSequence?.Invoke();
+        }
+
+
         if (health == 0)
         {
             //enemyDeadSequence?.invoke();

@@ -29,7 +29,8 @@ public class Player : MonoBehaviour, IDamageable
     float rotationX = 0;
 
 
-    public float gravity = 20.0f;
+    public static float gravity = 20.0f;
+
     [HideInInspector]
     public bool canMove = true;
 
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField]
     GameInput gameInput;
 
-    public float jumpSpeed = 8.0f;
+    public static float jumpSpeed = 8.0f;
     //damage by punches
     [SerializeField]
     private float damage = 5f;
@@ -172,6 +173,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         HandleMovement();
         AnyFightAnimationIsPlaying();
+
 
     }
     private void HandleMovement()

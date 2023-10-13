@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static event Action floatingCutsceneCompleted;
     public static event Action startFloatingCutscene;
 
+
     [SerializeField]
     PlayableDirector floatingCutscene;
     public static bool floatingSequenceHasBeenPlayed = false;
@@ -18,18 +19,22 @@ public class GameManager : MonoBehaviour
     Enemy enemy;
     [SerializeField]
     Player player;
+    [SerializeField]
+    Transform endSequenceEnemyPosition;
+    [SerializeField]
+    GameObject endSequenceGameObject;
+
+    public static float EndSequenceStartHealth = 0.5f;
+
 
     [SerializeField]
     private AudioSource fightTheme;
 
 
-
-    void Start()
+    private void OnEnable()
     {
-
+        Enemy.endSequence += EndSequenceStart;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (floatingCutscene.gameObject.activeInHierarchy)
@@ -50,7 +55,19 @@ public class GameManager : MonoBehaviour
             }
     }
 
-    void FloatingCutsceneStart()
+    void EndSequenceStart()
     {
+        endSequenceGameObject.SetActive(true);
+        Player.jumpSpeed = 20;
+        Player.gravity = 20;
+        enemy.GetComponent<Enemy>().enabled = false;
+        enemy.GetComponent<NavMeshAgent>().enabled = false;
+        Destroy(enemy.GetComponent<Rigidbody>());
+        enemy.transform.position = endSequenceEnemyPosition.position;
+
+    }
+    private void OnDisable()
+    {
+        Enemy.endSequence -= EndSequenceStart;
     }
 }
