@@ -207,6 +207,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "a52d3ab7-38de-4b88-8b68-2e2be7fc2314",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Punch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "Mouse",
                     "id": "ec5cf203-1e06-4396-b013-bfc8655048d6",
                     "path": "2DVector",
@@ -312,6 +323,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Kick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41465402-d188-4bb7-80cc-ab0af968a5d1",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Kick",
                     "isComposite": false,
                     "isPartOfComposite": false
