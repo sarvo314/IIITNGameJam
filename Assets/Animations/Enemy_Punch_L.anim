@@ -31134,6 +31134,6 @@ AnimationClip:
     functionName: DamagePlayer
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 6
+    floatParameter: 12
     intParameter: 0
     messageOptions: 0

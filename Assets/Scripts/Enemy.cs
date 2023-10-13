@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour, IDamageable
                 }
                 else if (moveName == "Enemy_Fireball")
                 {
-                    Invoke("PlayFireBallSound", 2f);
+                    Invoke("PlayFireBallSound", 0.5f);
                 }
                 else
                 {

@@ -83,25 +83,71 @@ public class Player : MonoBehaviour, IDamageable
 
     private void GameInput_OnKickAction(object sender, EventArgs e)
     {
-        while (Enemy.enemyIsHitting) ;
+        //while (Enemy.enemyIsHitting) ;
+        //if (AnyFightAnimationIsPlaying())
+        if (playerIsHitting)
+        {
+            return;
+        }
         //audioManager.PlayPunchSound();
-        playerIsHitting = true;
+        //playerIsHitting = true;
         int move = ChooseAKick();
         string moveName = kicks[move].Key;
         animator.SetTrigger(moveName);
-        playerIsHitting = false;
+        //playerIsHitting = false;
     }
 
     private void GameInput_OnPunchAction(object sender, EventArgs e)
     {
-        while (Enemy.enemyIsHitting) ;
+        //while (Enemy.enemyIsHitting ) ;
+        //if (AnyFightAnimationIsPlaying())
+        if (playerIsHitting)
+        {
+            return;
+        }
         //audioManager.PlayPunchSound();
-        playerIsHitting = true;
+        //playerIsHitting = true;
         int move = ChooseAPunch();
         string moveName = punches[move].Key;
         animator.SetTrigger(moveName);
-        playerIsHitting = false;
+        //playerIsHitting = false;
     }
+    private bool AnyFightAnimationIsPlaying()
+    {
+        //float currTime = 0;
+        //float totalTime = 2f;
+        ////delay between taps
+        //while (currTime < totalTime)
+        //{
+        //    currTime += Time.deltaTime;
+        //}
+
+
+        foreach (var punch in punches.Values)
+        {
+            string punch_name = punch.Key;
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(punch_name))
+            {
+                playerIsHitting = true;
+                return true;
+            }
+        }
+        foreach (var kick in kicks.Values)
+        {
+            string kick_name = kick.Key;
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName(kick_name))
+            {
+                playerIsHitting = true;
+                return true;
+            }
+        }
+        //ThreadableAssetWrapper
+
+
+        playerIsHitting = false;
+        return false;
+    }
+
 
     private void GameInput_OnJumpAction(object sender, EventArgs e)
     {
@@ -125,6 +171,8 @@ public class Player : MonoBehaviour, IDamageable
     private void Update()
     {
         HandleMovement();
+        AnyFightAnimationIsPlaying();
+
     }
     private void HandleMovement()
     {
